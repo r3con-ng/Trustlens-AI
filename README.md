@@ -27,7 +27,7 @@ Open <http://127.0.0.1:8000>. Interactive API documentation is at <http://127.0.
 
 The frontend is deployed from the `frontend/` directory by GitHub Actions. After the Pages workflow succeeds, open <https://r3con-ng.github.io/Trustlens-AI/>. Pushes to `main` that change the frontend or Pages workflow trigger a new deployment.
 
-GitHub Pages serves static files only. On the Pages site, checks run in your browser using a lightweight rule set; the FastAPI backend and external reputation checks are not deployed there. Local runs continue to use FastAPI. The workflow enables Pages for this repository and publishes through GitHub Actions.
+GitHub Pages serves static files only. On the Pages site, checks run in your browser using a lightweight rule set; the FastAPI backend and external reputation checks are not deployed there. Local runs continue to use FastAPI. One-time setup: open **Settings → Pages** and select **GitHub Actions** as the build and deployment source. Then run the workflow from the **Actions** tab if it does not start automatically.
 
 ## API
 
