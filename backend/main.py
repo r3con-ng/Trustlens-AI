@@ -10,7 +10,6 @@ from .analyzers import analyze_call_transcript, analyze_message, analyze_url
 
 ROOT = Path(__file__).resolve().parent.parent
 app = FastAPI(title="TrustLens AI", version="0.1.0", description="Explainable link and message safety prototype")
-app.mount("/static", StaticFiles(directory=ROOT / "frontend"), name="static")
 
 
 class URLRequest(BaseModel):
@@ -58,3 +57,8 @@ def call_transcript_endpoint(request: MessageRequest):
         return stamp(analyze_call_transcript(request.text))
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
+
+
+# Keep the frontend assets at the site root so relative URLs work on GitHub Pages
+# project sites as well as on the local FastAPI server.
+app.mount("/", StaticFiles(directory=ROOT / "frontend", html=True), name="frontend")

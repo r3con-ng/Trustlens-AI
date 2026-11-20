@@ -23,6 +23,12 @@ python -m uvicorn backend.main:app --reload
 
 Open <http://127.0.0.1:8000>. Interactive API documentation is at <http://127.0.0.1:8000/docs>.
 
+## GitHub Pages demo
+
+The frontend is deployed from the `frontend/` directory by GitHub Actions. After the Pages workflow succeeds, open <https://r3con-ng.github.io/Trustlens-AI/>. Pushes to `main` that change the frontend or Pages workflow trigger a new deployment.
+
+GitHub Pages serves static files only. On the Pages site, checks run in your browser using a lightweight rule set; the FastAPI backend and external reputation checks are not deployed there. Local runs continue to use FastAPI. To enable the Pages site in a repository, open **Settings → Pages** and set the build and deployment source to **GitHub Actions**.
+
 ## API
 
 | Method | Path | Input |
@@ -49,20 +55,7 @@ requirements.txt
 .env.example   Placeholder for future server-side configuration
 ```
 
-## Push this project to GitHub
-
-Create an empty repository on GitHub, then run these commands from this directory. Replace the remote URL with the URL of your repository.
-
-```bash
-git init
-git add .
-git commit -m "Initial TrustLens prototype"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
-git push -u origin main
-```
-
-For future edits:
+## Commit future edits
 
 ```bash
 git add .

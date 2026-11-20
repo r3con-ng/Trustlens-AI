@@ -220,15 +220,20 @@ form.addEventListener("submit", async (event) => {
   analyzeButton.disabled = true;
   analyzeButton.querySelector("span:first-child").textContent = t("analyzing");
   try {
-    const endpoint = mode === "url" ? "/api/analyze/url" : mode === "call" ? "/api/analyze/call-transcript" : "/api/analyze/message";
-    const payload = mode === "url" ? { url: value } : { text: value };
-    const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
-    const data = await response.json();
-    if (!response.ok) {
-      const detail = typeof data.detail === "string" ? data.detail : "";
-      if (detail && locale === "en") { showError("error_generic"); formError.textContent = detail; }
-      else showError("error_generic");
-      return;
+    let data;
+    if (window.location.hostname.endsWith("github.io")) {
+      data = window.trustlensStaticAnalyze(mode, value);
+    } else {
+      const endpoint = mode === "url" ? "/api/analyze/url" : mode === "call" ? "/api/analyze/call-transcript" : "/api/analyze/message";
+      const payload = mode === "url" ? { url: value } : { text: value };
+      const response = await fetch(endpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      data = await response.json();
+      if (!response.ok) {
+        const detail = typeof data.detail === "string" ? data.detail : "";
+        if (detail && locale === "en") { showError("error_generic"); formError.textContent = detail; }
+        else showError("error_generic");
+        return;
+      }
     }
     renderReport(data);
   } catch {
