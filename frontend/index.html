@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-theme="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101713" />
+    <meta name="description" content="Understand suspicious links and messages before you act." />
+    <title>TrustLens AI — Digital Safety Assistant</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="TrustLens AI home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M18 3.5 30 8v9.2c0 7.2-4.6 12.5-12 15.3C10.6 29.7 6 24.4 6 17.2V8l12-4.5Z"/><path d="M11 18s2.4-4.2 7-4.2 7 4.2 7 4.2-2.4 4.2-7 4.2-7-4.2-7-4.2Z"/><circle cx="18" cy="18" r="1.8"/></svg></span>
+        <span class="brand-text">TrustLens <b>AI</b></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#analyzer" data-i18n="nav_check">Check content</a>
+        <a href="#how" data-i18n="nav_how">How it works</a>
+      </nav>
+      <div class="preferences">
+        <label class="sr-only" for="languageSelect" data-i18n="language">Language</label>
+        <select id="languageSelect" class="select-control" aria-label="Language">
+          <option value="en">EN</option><option value="hi">हिंदी</option>
+        </select>
+        <label class="sr-only" for="themeSelect" data-i18n="theme">Theme</label>
+        <select id="themeSelect" class="select-control theme-select" aria-label="Theme">
+          <option value="system" data-i18n="system">System</option>
+          <option value="light" data-i18n="light">Light</option>
+          <option value="dark" data-i18n="dark">Dark</option>
+        </select>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-inner">
+          <div class="eyebrow"><span class="pulse"></span><span data-i18n="eyebrow">A clearer way to check suspicious content</span></div>
+          <h1 data-i18n="headline">Pause. Check.<br /><em>Then decide.</em></h1>
+          <p class="hero-copy" data-i18n="intro">Understand suspicious links and messages before you act. TrustLens explains the warning signs in plain language.</p>
+          <a class="text-link" href="#analyzer"><span data-i18n="start_check">Start a check</span><span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="art-center"><span class="art-mark">T</span><span class="art-caption">CLARITY / BEFORE ACTION</span></div><span class="art-node node-a">URL</span><span class="art-node node-b">TEXT</span><span class="art-node node-c">SIGNALS</span></div>
+      </section>
+
+      <section class="analyzer-section" id="analyzer">
+        <div class="section-heading">
+          <div><span class="section-kicker" data-i18n="section_check">01 / QUICK CHECK</span><h2 data-i18n="analyzer_title">What would you like to check?</h2><p data-i18n="analyzer_subtitle">Choose one. Your input is analyzed for this report and is not saved.</p></div>
+          <span class="privacy-chip"><span class="privacy-dot"></span><span data-i18n="private">Private by default</span></span>
+        </div>
+
+        <div class="workspace">
+          <div class="input-card">
+            <div class="mode-switch" role="tablist" aria-label="Analysis type">
+              <button type="button" role="tab" id="urlTab" class="mode-tab active" aria-selected="true" data-mode="url"><span class="tab-icon" aria-hidden="true">↗</span><span data-i18n="link_tab">A link</span></button>
+              <button type="button" role="tab" id="messageTab" class="mode-tab" aria-selected="false" data-mode="message"><span class="tab-icon" aria-hidden="true">☷</span><span data-i18n="message_tab">A message</span></button>
+              <button type="button" role="tab" id="callTab" class="mode-tab" aria-selected="false" data-mode="call"><span class="tab-icon" aria-hidden="true">◖</span><span data-i18n="call_tab">A call transcript</span></button>
+            </div>
+            <form id="analysisForm" novalidate>
+              <label id="inputLabel" for="analysisInput" data-i18n="url_label">Paste the link you want to check</label>
+              <textarea id="analysisInput" rows="4" maxlength="5000" required spellcheck="false" placeholder="https://example.com/login" data-placeholder="url_placeholder"></textarea>
+              <div class="field-foot"><span id="inputHint" data-i18n="url_hint">We check the address structure. We do not open the website.</span><span id="charCount">0</span></div>
+              <div class="form-actions"><button type="button" id="exampleButton" class="example-button" data-i18n="try_example">Try an example</button><button type="submit" id="analyzeButton" class="primary-button"><span data-i18n="analyze">Analyze</span><span class="button-arrow" aria-hidden="true">→</span></button></div>
+              <p class="privacy-note"><span aria-hidden="true">ⓘ</span><span data-i18n="privacy_note">Never paste passwords, OTPs or private account details.</span></p>
+              <p id="formError" class="form-error" role="alert" hidden></p>
+            </form>
+          </div>
+
+          <aside class="side-note">
+            <span class="side-icon" aria-hidden="true">✳</span>
+            <h3 data-i18n="advisory_title">A helpful second look</h3>
+            <p data-i18n="advisory_copy">TrustLens points out signals and gives you safer next steps. It cannot prove that a link or message is safe.</p>
+            <div class="side-rule"></div>
+            <span class="micro-label" data-i18n="checks_label">WHAT WE LOOK FOR</span>
+            <ul><li data-i18n="check_one">Link structure and unusual patterns</li><li data-i18n="check_two">Pressure, impersonation and sensitive requests</li><li data-i18n="check_three">Clear actions you can take next</li></ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="resultSection" class="result-section" aria-live="polite" hidden>
+        <div class="section-heading result-heading"><div><span class="section-kicker" data-i18n="section_report">02 / YOUR REPORT</span><h2 data-i18n="report_title">Here’s what we found</h2></div><span id="reportTime" class="report-time"></span></div>
+        <div id="reportCard" class="report-card"></div>
+      </section>
+
+      <section class="how-section" id="how">
+        <div class="how-heading"><span class="section-kicker" data-i18n="section_how">02 / SIMPLE BY DESIGN</span><h2 data-i18n="how_title">Clarity at every step.</h2></div>
+        <div class="steps-grid"><article><span>01</span><h3 data-i18n="step1_title">Share what concerns you</h3><p data-i18n="step1_copy">Paste a link or message. No account needed.</p></article><article><span>02</span><h3 data-i18n="step2_title">See the signals</h3><p data-i18n="step2_copy">Review the specific patterns our checks noticed.</p></article><article><span>03</span><h3 data-i18n="step3_title">Choose your next step</h3><p data-i18n="step3_copy">Use clear guidance to verify before you act.</p></article></div>
+      </section>
+    </main>
+    <footer class="site-footer"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M18 3.5 30 8v9.2c0 7.2-4.6 12.5-12 15.3C10.6 29.7 6 24.4 6 17.2V8l12-4.5Z"/><path d="M11 18s2.4-4.2 7-4.2 7 4.2 7 4.2-2.4 4.2-7 4.2-7-4.2-7-4.2Z"/><circle cx="18" cy="18" r="1.8"/></svg></span><span class="brand-text">TrustLens <b>AI</b></span></a><p data-i18n="footer_disclaimer">An advisory tool, not a guarantee of safety.</p><span class="footer-version">PROTOTYPE 0.1</span></footer>
+  </body>
+</html>
